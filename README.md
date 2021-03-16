@@ -1,0 +1,1 @@
+# TypeScript boilerplate for streamdeck plugins
