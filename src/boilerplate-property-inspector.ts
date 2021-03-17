@@ -14,15 +14,15 @@ class CounterPi extends StreamDeckPropertyInspectorHandler {
   }
 
   @SDOnPiEvent('documentLoaded')
-  onDocumentReady(): void {
+  onDocumentLoaded(): void {
     console.log('I AM READY')
   }
 
   @SDOnPiEvent('didReceiveSettings')
   private onSettingsReceived({
-    payload: {settings},
-  }: DidReceiveSettingsEvent<SettingsInterface>) {
-
+    payload: { settings },
+  }: DidReceiveSettingsEvent<SettingsInterface>): void {
+    console.log('I AM READY')
   }
 }
 

@@ -1,5 +1,5 @@
-import {CounterAction} from './actions/action'
-import {StreamDeckPluginHandler} from 'streamdeck-typescript'
+import { CounterAction } from './actions/action'
+import { StreamDeckPluginHandler } from 'streamdeck-typescript'
 
 export class Counter extends StreamDeckPluginHandler {
   constructor() {

@@ -2,17 +2,18 @@
   "compilerOptions": {
     "module": "CommonJS",
     "target": "ES6",
-    "noImplicitAny": true,
     "removeComments": true,
-    "preserveConstEnums": true,
-    "declaration": true,
     "sourceMap": false,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "strictPropertyInitialization": false,
     "skipLibCheck": true,
     "outDir": "./build",
     "esModuleInterop": true,
+    "moduleResolution": "node",
     "experimentalDecorators": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
     "lib": [
       "dom",
       "ESNext"
