@@ -1,7 +1,6 @@
 import {
   DidReceiveSettingsEvent,
   KeyDownEvent,
-  KeyUpEvent,
   SDOnActionEvent,
   StreamDeckAction,
   WillAppearEvent,
@@ -27,8 +26,9 @@ export class CounterAction extends StreamDeckAction<Counter, CounterAction> {
   }
 
   @SDOnActionEvent('keyUp')
-  private onKeyUp() {
+  public onKeyUp() {
     console.log('KEYUP ok')
+    return 42
   }
 
   @SDOnActionEvent('keyDown')
