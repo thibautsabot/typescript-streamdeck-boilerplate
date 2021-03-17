@@ -2,25 +2,36 @@
   "Actions": [
     {
       "Icon": "icons/channel-action-image",
-      "Name": "boilerplate",
+      "Name": "Green",
       "States": [
         {
           "Image": "icons/channel-on"
         }
       ],
-      "Tooltip": "Toggle channel off/on",
+      "Tooltip": "Turn light green",
       "UUID": "com.thibautsabot.streamdeck.boilerplate"
     },
     {
       "Icon": "icons/channel-action-image",
-      "Name": "secondaction",
+      "Name": "Red",
       "States": [
         {
           "Image": "icons/channel-on"
         }
       ],
-      "Tooltip": "Toggle channel off/on",
+      "Tooltip": "Turn light red",
       "UUID": "com.thibautsabot.streamdeck.secondaction"
+    },
+    {
+      "Icon": "icons/channel-action-image",
+      "Name": "Toggle",
+      "States": [
+        {
+          "Image": "icons/channel-on"
+        }
+      ],
+      "Tooltip": "Toggle light off/on",
+      "UUID": "com.thibautsabot.streamdeck.toggle"
     }
   ],
   "SDKVersion": 2,
