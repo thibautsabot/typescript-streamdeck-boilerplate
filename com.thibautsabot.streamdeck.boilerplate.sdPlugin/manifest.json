@@ -10,6 +10,17 @@
       ],
       "Tooltip": "Toggle channel off/on",
       "UUID": "com.thibautsabot.streamdeck.boilerplate"
+    },
+    {
+      "Icon": "icons/channel-action-image",
+      "Name": "secondaction",
+      "States": [
+        {
+          "Image": "icons/channel-on"
+        }
+      ],
+      "Tooltip": "Toggle channel off/on",
+      "UUID": "com.thibautsabot.streamdeck.secondaction"
     }
   ],
   "SDKVersion": 2,
