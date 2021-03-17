@@ -33,7 +33,7 @@ export class CounterAction extends StreamDeckAction<Counter, CounterAction> {
 
   @SDOnActionEvent('keyUp')
   private onKeyUp() {
-    console.log('KEYUP WORKING')
+    console.log('KEYUP FIRE')
   }
 
   @SDOnActionEvent('keyDown')
@@ -50,6 +50,6 @@ export class CounterAction extends StreamDeckAction<Counter, CounterAction> {
     context,
     payload: {settings},
   }: DidReceiveSettingsEvent<SettingsInterface>) {
-    this.plugin.setTitle(settings.count.toString() ?? 0, context)
+    this.plugin.setTitle(settings.count.toString() ?? '', context)
   }
 }
