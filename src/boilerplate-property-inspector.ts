@@ -1,12 +1,7 @@
-import {
-  DidReceiveSettingsEvent,
-  SDOnPiEvent,
-  StreamDeckPropertyInspectorHandler,
-} from 'streamdeck-typescript'
+import { SDOnPiEvent, StreamDeckPropertyInspectorHandler } from 'streamdeck-typescript'
 
-interface SettingsInterface {
-  count: number
-  steps: number
+export interface SettingsInterface {
+  accessToken: string
 }
 class BoilerplatePi extends StreamDeckPropertyInspectorHandler {
   constructor() {
@@ -15,14 +10,11 @@ class BoilerplatePi extends StreamDeckPropertyInspectorHandler {
 
   @SDOnPiEvent('documentLoaded')
   onDocumentLoaded(): void {
-    console.log('onDocumentLoaded')
+    document.getElementById('accesstoken')?.addEventListener('change', this.onAccessTokenChange.bind(this))
   }
 
-  @SDOnPiEvent('didReceiveSettings')
-  private onSettingsReceived({
-    payload: { settings },
-  }: DidReceiveSettingsEvent<SettingsInterface>): void {
-    console.log('didReceiveSettings')
+  private onAccessTokenChange(e: Event) {
+    this.settingsManager.setGlobalSettings<SettingsInterface>({ accessToken: (<HTMLInputElement>e.target).value })
   }
 }
 
