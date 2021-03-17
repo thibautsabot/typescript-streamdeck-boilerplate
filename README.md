@@ -13,6 +13,8 @@ To make the developper experience easier, you can run `refreshPlugin.sh` on each
 
 The script will close the StreamDeck application, build your plugin, copy it to the OSX Plugin folder, and restart StreamDeck.
 
+(If you are looking for the official JS boilerplate go here : https://github.com/elgatosf/streamdeck-plugintemplate)
+
 ## Technologies
 
 - TypeScript

@@ -13,7 +13,7 @@
     }
   ],
   "SDKVersion": 2,
-  "Author": "dflydev",
+  "Author": "thibautsabot",
   "Category": "boilerplate",
   "CategoryIcon": "icons/category-icon",
   "CodePath": "public/plugin.html",

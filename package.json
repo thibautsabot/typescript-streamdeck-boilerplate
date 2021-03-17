@@ -1,6 +1,6 @@
 {
   "name": "streamdeck-typescript-boilerplate",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "TypeScript boilerplate for streamdeck plugins",
   "repository": "https://github.com/thibautsabot/streamdeck-typescript-boilerplate",
   "scripts": {
