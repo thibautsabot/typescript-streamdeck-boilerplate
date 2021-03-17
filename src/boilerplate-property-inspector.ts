@@ -8,22 +8,22 @@ interface SettingsInterface {
   count: number
   steps: number
 }
-class CounterPi extends StreamDeckPropertyInspectorHandler {
+class BoilerplatePi extends StreamDeckPropertyInspectorHandler {
   constructor() {
     super()
   }
 
   @SDOnPiEvent('documentLoaded')
   onDocumentLoaded(): void {
-    console.log('I AM READY')
+    console.log('onDocumentLoaded')
   }
 
   @SDOnPiEvent('didReceiveSettings')
   private onSettingsReceived({
     payload: { settings },
   }: DidReceiveSettingsEvent<SettingsInterface>): void {
-    console.log('I AM READY')
+    console.log('didReceiveSettings')
   }
 }
 
-new CounterPi()
+new BoilerplatePi()

@@ -1,11 +1,11 @@
-import { CounterAction } from './actions/action'
+import { BoilerplateAction } from './actions/action'
 import { StreamDeckPluginHandler } from 'streamdeck-typescript'
 
-export class Counter extends StreamDeckPluginHandler {
+export class Boilerplate extends StreamDeckPluginHandler {
   constructor() {
     super()
-    new CounterAction(this, 'com.thibautsabot.streamdeck.boilerplate')
+    new BoilerplateAction(this, 'com.thibautsabot.streamdeck.boilerplate')
   }
 }
 
-new Counter()
+new Boilerplate()
