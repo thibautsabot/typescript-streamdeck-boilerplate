@@ -8,7 +8,7 @@ pkill 'Stream Deck'
 uuid=$(sed -n 's/.*"UUID": "\(.*\)"/\1/p' com.thibautsabot.streamdeck.boilerplate.sdPlugin/manifest.json)
 
 # Pull the plugin name from the UUID
-pluginName=${uuid%.*}
+pluginName="com.thibautsabot.streamdeck.boilerplate"
 
 pluginsDir="$HOME/Library/Application Support/com.elgato.StreamDeck/Plugins"
 projectDir=$(PWD)
