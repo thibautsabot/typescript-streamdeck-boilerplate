@@ -24,3 +24,18 @@ export async function fetchApi<T>({ body, endpoint, method, accessToken }: Fetch
     })
   ).json()
 }
+
+interface AddSelectOption {
+  select: HTMLSelectElement
+  element: {
+    id: string
+    name: string
+  }
+}
+
+export const addSelectOption = ({select, element}: AddSelectOption): void => {
+  const option = document.createElement('option')
+  option.value = element.id
+  option.text = element.name
+  select.add(option)
+}
