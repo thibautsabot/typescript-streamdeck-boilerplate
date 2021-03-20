@@ -11,13 +11,10 @@ class BoilerplatePi extends StreamDeckPropertyInspectorHandler {
       ?.addEventListener('click', this.onValidateButtonPressed.bind(this))
   }
 
-  private async onValidateButtonPressed() {
+  private onValidateButtonPressed() {
     const input = (<HTMLInputElement>document.getElementById('input'))?.value
 
-    console.log('new input value : ', input)
-    console.log('old input value : ', this.requestSettings())
-
-    this.setSettings(input)
+    this.setSettings({ input })
   }
 }
 
