@@ -1,13 +1,13 @@
-import { SettingsInterface } from '../boilerplate-property-inspector'
+import { GlobalSettingsInterface } from './interface'
 
 export function isGlobalSettingsSet(
-  settings: SettingsInterface | unknown
-): settings is SettingsInterface {
-  return (settings as SettingsInterface).accessToken !== undefined
+  settings: GlobalSettingsInterface | unknown
+): settings is GlobalSettingsInterface {
+  return (settings as GlobalSettingsInterface).accessToken !== undefined
 }
 
 interface FetchAPI {
-  body?: any
+  body?: BodyInit
   endpoint: string
   method: string
   accessToken: string

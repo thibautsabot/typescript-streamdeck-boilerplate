@@ -1,13 +1,8 @@
-import {
-  SDOnPiEvent,
-  StreamDeckPropertyInspectorHandler,
-} from 'streamdeck-typescript'
+import { SDOnPiEvent, StreamDeckPropertyInspectorHandler } from 'streamdeck-typescript'
 import { isGlobalSettingsSet, fetchApi } from './utils/index'
+import { GlobalSettingsInterface, SceneSettingsInterface } from './utils/interface'
 
-export interface SettingsInterface {
-  accessToken: string
-}
-class BoilerplatePi extends StreamDeckPropertyInspectorHandler {
+class SmartthingsPI extends StreamDeckPropertyInspectorHandler {
   constructor() {
     super()
   }
@@ -24,7 +19,7 @@ class BoilerplatePi extends StreamDeckPropertyInspectorHandler {
 
   private async onValidateButtonPressed() {
     const accessToken = (<HTMLInputElement>document.getElementById('accesstoken'))?.value
-    this.settingsManager.setGlobalSettings<SettingsInterface>({ accessToken })
+    this.settingsManager.setGlobalSettings<GlobalSettingsInterface>({ accessToken })
 
     const res = await fetchApi({ endpoint: '/scenes', method: 'GET', accessToken })
     const scenes = res.items.map((item: any) => ({
@@ -43,17 +38,14 @@ class BoilerplatePi extends StreamDeckPropertyInspectorHandler {
   }
 
   public onSceneChanged(e: Event) {
-    const newScene = (e.target as HTMLSelectElement).value 
-    const oldScene = this.requestSettings() as any
+    const newScene = (e.target as HTMLSelectElement).value
 
-    if (newScene !== oldScene) {
-      this.setSettings({ scene: newScene })
-    }
+    this.setSettings<SceneSettingsInterface>({ sceneId: newScene })
   }
 
   @SDOnPiEvent('globalSettingsAvailable')
   propertyInspectorDidAppear(): void {
-    const globalSettings = this.settingsManager.getGlobalSettings<SettingsInterface>()
+    const globalSettings = this.settingsManager.getGlobalSettings<GlobalSettingsInterface>()
 
     if (isGlobalSettingsSet(globalSettings)) {
       const accessToken = globalSettings.accessToken
@@ -64,4 +56,4 @@ class BoilerplatePi extends StreamDeckPropertyInspectorHandler {
   }
 }
 
-new BoilerplatePi()
+new SmartthingsPI()

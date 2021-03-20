@@ -1,15 +1,13 @@
-import { BoilerplateAction } from './actions/action'
-import { SecondAction } from './actions/secondaction'
+import { DeviceAtion } from './actions/device'
+import { SceneAction } from './actions/scene'
 import { StreamDeckPluginHandler } from 'streamdeck-typescript'
-import { Toggle } from './actions/toggle'
 
-export class Boilerplate extends StreamDeckPluginHandler {
+export class Smartthings extends StreamDeckPluginHandler {
   constructor() {
     super()
-    new BoilerplateAction(this, 'com.thibautsabot.streamdeck.boilerplate')
-    new SecondAction(this, 'com.thibautsabot.streamdeck.secondaction')
-    new Toggle(this, 'com.thibautsabot.streamdeck.toggle')
+    new SceneAction(this, 'com.thibautsabot.streamdeck.scene')
+    new DeviceAtion(this, 'com.thibautsabot.streamdeck.device')
   }
 }
 
-new Boilerplate()
+new Smartthings()

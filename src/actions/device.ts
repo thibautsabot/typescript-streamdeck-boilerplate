@@ -4,12 +4,12 @@ import {
   StreamDeckAction,
 } from 'streamdeck-typescript'
 
-import { Boilerplate } from '../boilerplate-plugin'
-import { SettingsInterface } from '../boilerplate-property-inspector'
+import { GlobalSettingsInterface } from '../utils/interface'
+import { Smartthings } from '../boilerplate-plugin'
 import { isGlobalSettingsSet } from '../utils/index'
 
-export class Toggle extends StreamDeckAction<Boilerplate, Toggle> {
-  constructor(private plugin: Boilerplate, private actionName: string) {
+export class DeviceAtion extends StreamDeckAction<Smartthings, DeviceAtion> {
+  constructor(private plugin: Smartthings, private actionName: string) {
     super(plugin, actionName)
     console.log('Boilerplate constructor')
   }
@@ -19,13 +19,13 @@ export class Toggle extends StreamDeckAction<Boilerplate, Toggle> {
     action,
     context,
     device,
-  }: KeyUpEvent<SettingsInterface>): Promise<number> {
+  }: KeyUpEvent<any>): Promise<number> {
     console.log('keyUp')
     console.log('action : ', action)
     console.log('context : ', context)
     console.log('device : ', device)
 
-    const globalSettings = this.plugin.settingsManager.getGlobalSettings<SettingsInterface>()
+    const globalSettings = this.plugin.settingsManager.getGlobalSettings<GlobalSettingsInterface>()
 
     if (isGlobalSettingsSet(globalSettings)) {
       const token = globalSettings.accessToken

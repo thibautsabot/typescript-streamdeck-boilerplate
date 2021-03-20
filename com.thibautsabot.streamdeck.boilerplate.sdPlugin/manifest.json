@@ -2,45 +2,34 @@
   "Actions": [
     {
       "Icon": "icons/channel-action-image",
-      "Name": "Green",
+      "Name": "Scene",
       "States": [
         {
           "Image": "icons/channel-on"
         }
       ],
-      "Tooltip": "Turn light green",
-      "UUID": "com.thibautsabot.streamdeck.boilerplate"
+      "Tooltip": "Scenes",
+      "UUID": "com.thibautsabot.streamdeck.scene"
     },
     {
       "Icon": "icons/channel-action-image",
-      "Name": "Red",
+      "Name": "Device",
       "States": [
         {
           "Image": "icons/channel-on"
         }
       ],
-      "Tooltip": "Turn light red",
-      "UUID": "com.thibautsabot.streamdeck.secondaction"
-    },
-    {
-      "Icon": "icons/channel-action-image",
-      "Name": "Toggle",
-      "States": [
-        {
-          "Image": "icons/channel-on"
-        }
-      ],
-      "Tooltip": "Toggle light off/on",
-      "UUID": "com.thibautsabot.streamdeck.toggle"
+      "Tooltip": "Devices",
+      "UUID": "com.thibautsabot.streamdeck.device"
     }
   ],
   "SDKVersion": 2,
   "Author": "thibautsabot",
-  "Category": "boilerplate",
+  "Category": "Smartthings",
   "CategoryIcon": "icons/category-icon",
   "CodePath": "public/plugin.html",
   "PropertyInspectorPath": "public/property-inspector.html",
-  "Description": "boilerplate desc",
+  "Description": "Smartthings actions",
   "Name": "Smartthings plugin",
   "Icon": "icons/category-icon",
   "URL": "https://www.elgato.com/en/gaming/stream-deck",
