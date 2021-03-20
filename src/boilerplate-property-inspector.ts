@@ -1,6 +1,7 @@
 import { SDOnPiEvent, StreamDeckPropertyInspectorHandler } from 'streamdeck-typescript'
 import { isGlobalSettingsSet, fetchApi } from './utils/index'
 import { GlobalSettingsInterface, SceneSettingsInterface } from './utils/interface'
+import { ListScene } from './utils/apiTypes'
 
 class SmartthingsPI extends StreamDeckPropertyInspectorHandler {
   constructor() {
@@ -21,15 +22,15 @@ class SmartthingsPI extends StreamDeckPropertyInspectorHandler {
     const accessToken = (<HTMLInputElement>document.getElementById('accesstoken'))?.value
     this.settingsManager.setGlobalSettings<GlobalSettingsInterface>({ accessToken })
 
-    const res = await fetchApi({ endpoint: '/scenes', method: 'GET', accessToken })
-    const scenes = res.items.map((item: any) => ({
+    const res = await fetchApi<ListScene>({ endpoint: '/scenes', method: 'GET', accessToken })
+    const scenes = res.items.map((item) => ({
       id: item.sceneId,
       name: item.sceneName,
     }))
 
     const select = <HTMLSelectElement>document.getElementById('scenes_select')
 
-    scenes.forEach((scene: any) => {
+    scenes.forEach((scene) => {
       const option = document.createElement('option')
       option.value = scene.id
       option.text = scene.name

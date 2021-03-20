@@ -13,7 +13,7 @@ interface FetchAPI {
   accessToken: string
 }
 
-export async function fetchApi({ body, endpoint, method, accessToken }: FetchAPI): Promise<any> {
+export async function fetchApi<T>({ body, endpoint, method, accessToken }: FetchAPI): Promise<T> {
   return await (
     await fetch(`https://api.smartthings.com/v1${endpoint}`, {
       method,
