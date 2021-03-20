@@ -1,63 +1,47 @@
-import {
-  KeyUpEvent,
-  SDOnActionEvent,
-  StreamDeckAction,
-} from 'streamdeck-typescript'
+import { DeviceSettingsInterface, GlobalSettingsInterface } from '../utils/interface'
+import { KeyUpEvent, SDOnActionEvent, StreamDeckAction } from 'streamdeck-typescript'
+import { fetchApi, isGlobalSettingsSet } from '../utils/index'
 
-import { GlobalSettingsInterface } from '../utils/interface'
+import { DeviceStatus } from '@smartthings/core-sdk'
 import { Smartthings } from '../boilerplate-plugin'
-import { isGlobalSettingsSet } from '../utils/index'
 
 export class DeviceAtion extends StreamDeckAction<Smartthings, DeviceAtion> {
   constructor(private plugin: Smartthings, private actionName: string) {
     super(plugin, actionName)
-    console.log('Boilerplate constructor')
   }
 
   @SDOnActionEvent('keyUp')
-  public async onKeyUp({
-    action,
-    context,
-    device,
-  }: KeyUpEvent<any>): Promise<number> {
-    console.log('keyUp')
-    console.log('action : ', action)
-    console.log('context : ', context)
-    console.log('device : ', device)
-
+  public async onKeyUp({ payload }: KeyUpEvent<DeviceSettingsInterface>): Promise<void> {
     const globalSettings = this.plugin.settingsManager.getGlobalSettings<GlobalSettingsInterface>()
 
     if (isGlobalSettingsSet(globalSettings)) {
       const token = globalSettings.accessToken
+      const deviceId = payload.settings.deviceId
 
-      const lightStatus = await (
-        await fetch('https://api.smartthings.com/v1/devices/b473d73f-f66c-4b21-a3df-4f9fce0faf9b/status', {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${token}`,
+      const lightStatus = await fetchApi<DeviceStatus>({
+        endpoint: `/devices/${deviceId}/status`,
+        method: 'GET',
+        accessToken: token,
+      })
+
+      if (lightStatus.components?.main.switch === undefined) {
+        console.warn('Only switch devices are supported at the moment !')
+        return
+      }
+
+      const isOn = lightStatus.components?.main.switch.switch.value === 'on'
+
+      await fetchApi({
+        endpoint: `/devices/${deviceId}/commands`,
+        method: 'POST',
+        accessToken: token,
+        body: JSON.stringify([
+          {
+            capability: 'switch',
+            command: isOn ? 'off' : 'on',
           },
-        })
-      ).json()
-
-      const isOn = lightStatus.components.main.switch.switch.value === 'on'
-      console.log('isOn : ', isOn)
-
-      const res = await (
-        await fetch('https://api.smartthings.com/v1/devices/b473d73f-f66c-4b21-a3df-4f9fce0faf9b/commands', {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify([{
-            "capability": "switch",
-            "command": isOn ? 'off' : 'on'
-          }])
-        })
-      ).json()
-
-      console.log('res : ', res)
+        ]),
+      })
     }
-
-    return 42
   }
 }

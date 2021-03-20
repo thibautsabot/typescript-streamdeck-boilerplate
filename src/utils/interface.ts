@@ -5,3 +5,7 @@ export interface GlobalSettingsInterface {
 export interface SceneSettingsInterface {
   sceneId: string
 }
+
+export interface DeviceSettingsInterface {
+  deviceId: string
+}

@@ -25,17 +25,21 @@ export async function fetchApi<T>({ body, endpoint, method, accessToken }: Fetch
   ).json()
 }
 
+export interface SelectElement {
+    id?: string
+    name?: string
+}
 interface AddSelectOption {
   select: HTMLSelectElement
-  element: {
-    id: string
-    name: string
-  }
+  element: SelectElement
 }
 
 export const addSelectOption = ({select, element}: AddSelectOption): void => {
-  const option = document.createElement('option')
-  option.value = element.id
-  option.text = element.name
-  select.add(option)
+  if (element.id && element.name) {
+    const option = document.createElement('option')
+    option.value = element.id
+    option.text = element.name
+    select.add(option)
+  }
+
 }
