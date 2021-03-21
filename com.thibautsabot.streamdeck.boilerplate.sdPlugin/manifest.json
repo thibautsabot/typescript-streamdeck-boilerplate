@@ -1,22 +1,22 @@
 {
   "Actions": [
     {
-      "Icon": "icons/channel-action-image",
+      "Icon": "icons/scene",
       "Name": "Scene",
       "States": [
         {
-          "Image": "icons/channel-on"
+          "Image": "icons/scene_action"
         }
       ],
       "Tooltip": "Scenes",
       "UUID": "com.thibautsabot.streamdeck.scene"
     },
     {
-      "Icon": "icons/channel-action-image",
+      "Icon": "icons/device",
       "Name": "Device",
       "States": [
         {
-          "Image": "icons/channel-on"
+          "Image": "icons/device_action"
         }
       ],
       "Tooltip": "Devices",
@@ -26,12 +26,12 @@
   "SDKVersion": 2,
   "Author": "thibautsabot",
   "Category": "Smartthings",
-  "CategoryIcon": "icons/category-icon",
+  "CategoryIcon": "icons/smartthings_cat",
   "CodePath": "public/plugin.html",
   "PropertyInspectorPath": "public/property-inspector.html",
   "Description": "Smartthings actions",
   "Name": "Smartthings plugin",
-  "Icon": "icons/category-icon",
+  "Icon": "icons/smartthings",
   "URL": "https://www.elgato.com/en/gaming/stream-deck",
   "Version": "1.0.0",
   "OS": [
