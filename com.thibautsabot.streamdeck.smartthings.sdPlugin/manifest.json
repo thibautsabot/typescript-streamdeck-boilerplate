@@ -30,7 +30,7 @@
   "CodePath": "public/plugin.html",
   "PropertyInspectorPath": "public/property-inspector.html",
   "Description": "Smartthings actions",
-  "Name": "Smartthings plugin",
+  "Name": "Smartthings",
   "Icon": "icons/smartthings",
   "URL": "https://www.elgato.com/en/gaming/stream-deck",
   "Version": "1.0.0",

@@ -2,7 +2,7 @@ import { GlobalSettingsInterface, SceneSettingsInterface } from '../utils/interf
 import { KeyUpEvent, SDOnActionEvent, StreamDeckAction } from 'streamdeck-typescript'
 import { fetchApi, isGlobalSettingsSet } from '../utils/index'
 
-import { Smartthings } from '../boilerplate-plugin'
+import { Smartthings } from '../smartthings-plugin'
 import { Status } from '@smartthings/core-sdk'
 
 export class SceneAction extends StreamDeckAction<Smartthings, SceneAction> {

@@ -1,10 +1,10 @@
 {
-  "name": "streamdeck-typescript-boilerplate",
+  "name": "streamdeck-plugin-smartthings",
   "version": "1.0.0",
-  "description": "TypeScript boilerplate for streamdeck plugins",
-  "repository": "https://github.com/thibautsabot/streamdeck-typescript-boilerplate",
+  "description": "Streamdeck plugin for Smartthings",
+  "repository": "https://github.com/thibautsabot/streamdeck-plugin-smartthings",
   "scripts": {
-    "browserify": "browserify build/boilerplate-property-inspector.js > com.thibautsabot.streamdeck.boilerplate.sdPlugin/public/dist/boilerplate-property-inspector-bundle.js && browserify build/boilerplate-plugin.js > com.thibautsabot.streamdeck.boilerplate.sdPlugin/public/dist/boilerplate-plugin-bundle.js",
+    "browserify": "browserify build/smartthings-property-inspector.js > com.thibautsabot.streamdeck.smartthings.sdPlugin/public/dist/smartthings-property-inspector-bundle.js && browserify build/smartthings-plugin.js > com.thibautsabot.streamdeck.smartthings.sdPlugin/public/dist/smartthings-plugin-bundle.js",
     "build": "npm run tsc && npm run browserify",
     "lint": "eslint src/**/*.ts",
     "test": "jest --coverage",

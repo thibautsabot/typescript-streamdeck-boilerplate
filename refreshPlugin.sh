@@ -4,11 +4,7 @@ echo 'Killing the Stream Deck process'
 
 pkill 'Stream Deck'
 
-# Pull the UUID from the manifest.json
-uuid=$(sed -n 's/.*"UUID": "\(.*\)"/\1/p' com.thibautsabot.streamdeck.boilerplate.sdPlugin/manifest.json)
-
-# Pull the plugin name from the UUID
-pluginName=${uuid%.*}
+pluginName='com.thibautsabot.streamdeck.smartthings'
 
 pluginsDir="$HOME/Library/Application Support/com.elgato.StreamDeck/Plugins"
 projectDir=$(PWD)
@@ -27,7 +23,7 @@ pushd "$pluginsDir"
 mkdir $pluginName.sdPlugin
 
 # Copy content from local folder to Application folder
-cp -R "$projectDir/com.thibautsabot.streamdeck.boilerplate.sdPlugin/" $pluginName.sdPlugin
+cp -R "$projectDir/$pluginName.sdPlugin/" $pluginName.sdPlugin
 
 # Pop the plugins directory off the stack returning to where we were
 popd

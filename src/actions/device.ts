@@ -3,7 +3,7 @@ import { KeyUpEvent, SDOnActionEvent, StreamDeckAction } from 'streamdeck-typesc
 import { fetchApi, isGlobalSettingsSet } from '../utils/index'
 
 import { DeviceStatus } from '@smartthings/core-sdk'
-import { Smartthings } from '../boilerplate-plugin'
+import { Smartthings } from '../smartthings-plugin'
 
 export class DeviceAtion extends StreamDeckAction<Smartthings, DeviceAtion> {
   constructor(private plugin: Smartthings, private actionName: string) {
