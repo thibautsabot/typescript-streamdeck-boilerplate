@@ -6,7 +6,7 @@ import { Smartthings } from '../smartthings-plugin'
 import { Status } from '@smartthings/core-sdk'
 
 export class SceneAction extends StreamDeckAction<Smartthings, SceneAction> {
-  constructor(private plugin: Smartthings, private actionName: string) {
+  constructor(public plugin: Smartthings, private actionName: string) {
     super(plugin, actionName)
   }
 

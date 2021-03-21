@@ -41,5 +41,4 @@ export const addSelectOption = ({select, element}: AddSelectOption): void => {
     option.text = element.name
     select.add(option)
   }
-
 }

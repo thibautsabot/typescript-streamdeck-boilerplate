@@ -5,8 +5,8 @@ import { fetchApi, isGlobalSettingsSet } from '../utils/index'
 import { DeviceStatus } from '@smartthings/core-sdk'
 import { Smartthings } from '../smartthings-plugin'
 
-export class DeviceAtion extends StreamDeckAction<Smartthings, DeviceAtion> {
-  constructor(private plugin: Smartthings, private actionName: string) {
+export class DeviceAction extends StreamDeckAction<Smartthings, DeviceAction> {
+  constructor(public plugin: Smartthings, private actionName: string) {
     super(plugin, actionName)
   }
 
@@ -29,7 +29,7 @@ export class DeviceAtion extends StreamDeckAction<Smartthings, DeviceAtion> {
         return
       }
 
-      const isOn = lightStatus.components?.main.switch.switch.value === 'on'
+      const isOn = lightStatus.components.main.switch.switch.value === 'on'
 
       await fetchApi({
         endpoint: `/devices/${deviceId}/commands`,
