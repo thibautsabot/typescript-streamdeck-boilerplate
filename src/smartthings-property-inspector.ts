@@ -1,6 +1,21 @@
-import { SDOnPiEvent, StreamDeckPropertyInspectorHandler } from 'streamdeck-typescript'
-import { isGlobalSettingsSet, fetchApi, addSelectOption, SelectElement } from './utils/index'
-import { GlobalSettingsInterface, SceneSettingsInterface, DeviceSettingsInterface } from './utils/interface'
+import {
+  SDOnPiEvent,
+  StreamDeckPropertyInspectorHandler,
+  DidReceiveSettingsEvent,
+} from 'streamdeck-typescript'
+import {
+  isGlobalSettingsSet,
+  fetchApi,
+  addSelectOption,
+  SelectElement,
+  isDeviceSetting,
+  isSceneSetting,
+} from './utils/index'
+import {
+  GlobalSettingsInterface,
+  SceneSettingsInterface,
+  DeviceSettingsInterface,
+} from './utils/interface'
 import { PagedResult, SceneSummary, DeviceList } from '@smartthings/core-sdk'
 
 const pluginName = 'com.thibautsabot.streamdeck'
@@ -9,6 +24,7 @@ class SmartthingsPI extends StreamDeckPropertyInspectorHandler {
   private validateButton: HTMLButtonElement
   private selectLabel: HTMLSelectElement
   private select: HTMLSelectElement
+  private selectOptions?: SelectElement[]
 
   constructor() {
     super()
@@ -21,7 +37,7 @@ class SmartthingsPI extends StreamDeckPropertyInspectorHandler {
     this.select = document.getElementById('select_value') as HTMLSelectElement
 
     this.validateButton?.addEventListener('click', this.onValidateButtonPressed.bind(this))
-    this.select?.addEventListener('change', this.onSceneChanged.bind(this))
+    this.select?.addEventListener('change', this.onElementChanged.bind(this))
 
     switch (this.actionInfo.action) {
       case pluginName + '.device': {
@@ -72,19 +88,28 @@ class SmartthingsPI extends StreamDeckPropertyInspectorHandler {
       }
     }
 
-    elements.forEach((element) => addSelectOption({ select: this.select, element }))
+    this.setSettings({
+      selectOptions: elements,
+    })
+    this.requestSettings() // requestSettings will add the options to the select element
   }
 
-  public onSceneChanged(e: Event) {
+  public onElementChanged(e: Event) {
     const newSelection = (e.target as HTMLSelectElement).value
 
     switch (this.actionInfo.action) {
       case pluginName + '.scene': {
-        this.setSettings<SceneSettingsInterface>({ sceneId: newSelection })
+        this.setSettings<SceneSettingsInterface>({
+          selectOptions: this.selectOptions,
+          sceneId: newSelection,
+        })
         break
       }
       case pluginName + '.device': {
-        this.setSettings<DeviceSettingsInterface>({ deviceId: newSelection })
+        this.setSettings<DeviceSettingsInterface>({
+          selectOptions: this.selectOptions,
+          deviceId: newSelection,
+        })
         break
       }
     }
@@ -93,6 +118,7 @@ class SmartthingsPI extends StreamDeckPropertyInspectorHandler {
   // Prefill PI elements from cache
   @SDOnPiEvent('globalSettingsAvailable')
   propertyInspectorDidAppear(): void {
+    this.requestSettings()
     const globalSettings = this.settingsManager.getGlobalSettings<GlobalSettingsInterface>()
 
     if (isGlobalSettingsSet(globalSettings)) {
@@ -101,6 +127,26 @@ class SmartthingsPI extends StreamDeckPropertyInspectorHandler {
         ;(<HTMLInputElement>document.getElementById('accesstoken')).value = accessToken
       }
     }
+  }
+
+  @SDOnPiEvent('didReceiveSettings')
+  onReceiveSettings({
+    payload,
+  }: DidReceiveSettingsEvent<DeviceSettingsInterface | SceneSettingsInterface>): void {
+    this.selectOptions = payload.settings.selectOptions
+    this.select.length = 1 // Only keep the "No element" option
+    this.selectOptions?.forEach((element) => addSelectOption({ select: this.select, element }))
+
+    let activeIndex: number | undefined
+    if (isDeviceSetting(payload.settings)) {
+      const deviceId = payload.settings.deviceId
+      activeIndex = this.selectOptions?.findIndex((element) => element.id === deviceId) || 0
+    }
+    if (isSceneSetting(payload.settings)) {
+      const sceneId = payload.settings.sceneId
+      activeIndex = this.selectOptions?.findIndex((element) => element.id === sceneId) || 0
+    }
+    this.select.selectedIndex = activeIndex !== undefined ? activeIndex + 1 : 0 // + 1 because of the "No element" first option
   }
 }
 
