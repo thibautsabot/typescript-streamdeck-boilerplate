@@ -15,6 +15,8 @@ The script will close the StreamDeck application, build your plugin, copy it to 
 
 (If you are looking for the official JS boilerplate go here : https://github.com/elgatosf/streamdeck-plugintemplate)
 
+**For an implementation example, go to https://github.com/thibautsabot/streamdeck-plugin-smartthings**
+
 ## Technologies
 
 - TypeScript
