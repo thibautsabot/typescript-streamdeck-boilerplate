@@ -1,32 +1,30 @@
-# TypeScript boilerplate for streamdeck plugins
+# Smartthings plugin for StreamDeck
 
-Minical code example to create a StreamDeck plugin with TypeScript.
+StreamDeck plugin to control your smartthings devices and scenes.
 
-To use it :
+Chose what you need from the list :
 
-- `npm i`
-- Replace every `com.thibautsabot.boilerplate` occurence with your plugin ID
-- Replace every `boilerplate` imports, filenames and variables occurences
-- That's it, you're good to go !
+Add your smartthings personal access token and get everything from your hub !
 
-To make the developper experience easier, you can run `refreshPlugin.sh` on each change.
 
-The script will close the StreamDeck application, build your plugin, copy it to the OSX Plugin folder, and restart StreamDeck.
+## Access token
 
-(If you are looking for the official JS boilerplate go here : https://github.com/elgatosf/streamdeck-plugintemplate)
+A personal access token is required to fetch "smart things" from your hub.
 
-## Technologies
+Head over to https://account.smartthings.com/tokens and connect to your Samsung / Smartthings account.
 
-- TypeScript
-- Jest (for tests)
-- Eslint
-- Prettier
-- Browserify
+Click on "GENERATE NEW TOKEN".
 
-## Credits
-Huge credits to https://github.com/XeroxDev/Stream-Deck-TS-SDK.
-This boilerplate is based on their library.
+Enter a name and tick at least "Devices" and "Scenes".
 
-Inspired from https://github.com/dflydev/streamdeck-restreamio/ and https://github.com/XeroxDev/YTMD-StreamDeck
+*Your token is only stored on your machine !* It allows the plugin to control your devices, keep it secret. 
 
-Also thanks to https://github.com/FritzAndFriends/StreamDeckToolkit for the restart script.
+## Informations
+
+Made from https://github.com/thibautsabot/typescript-streamdeck-boilerplate/.
+
+For now only Devices and Scene are configured.
+
+You can control any "switch" devices. It theory we can control anything but I don't have the devices to test it out.
+
+You can contribute to the project by opening a Pull Request or an Issue.
